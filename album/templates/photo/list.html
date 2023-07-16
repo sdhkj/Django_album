@@ -1,20 +1,54 @@
-
 {% extends "base.html" %}
 {% block title %}首页{% endblock title %}
 {% block content %}
     <div class="container py-2">
         <div class="row" data-masonry='{"percentPosition": true}'>
+
             {% for photo in photos %}
             <div class="col-4 py-2">
-                <div class="card">
-                    <img
-                    src="{{ photo.image.url }}"
-                    alt=""
-                    class="card-img"
+                <div class="card hvr-float-shadow">
+                    # 增加a标签包含img标签
+                    <a
+                       href="#"
+                       data-bs-toggle="modal"
+                       data-bs-target="#photo-{{ photo.id }}"
                     >
+                    <img
+                        src="{{ photo.image.url }}"
+                        alt=""
+                        class="card-img"
+                        >
+                    </a>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+
+# 模态窗代码
+{% for photo in photos  %}
+<!-- Modal -->
+<div class="modal fade" id="photo-{{ photo.id }}">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img
+                     src="{{ photo.image.url }}"
+                     alt=""
+                     class="card-img"
+                     >
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+# 最后一行
 {% endblock content %}
+
+
+
+
+
+
+
