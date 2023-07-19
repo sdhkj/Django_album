@@ -31,7 +31,13 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                 <h2>
-                    <a class="nav-link active" aria-current="page" href="#">
+                    <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#upload"
+                    >
                         +
                     </a>
                 </h2>
@@ -57,6 +63,38 @@
         </div>
     </div>
 </div>
+
+
+<!-- 新增上传模态窗 -->
+<div class="modal fade" id="upload">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title">上传图片</h5>
+                <form action="{% url 'photo:upload' %}"
+                method="post"
+                enctype="multipart/form-data"
+                >
+                    {% csrf_token %}
+                    <div class="col py-2">
+                        <input
+                            class="form-control"
+                            type="file"
+                            id="images"
+                            name="images"
+                            multiple="multiple"
+                            accept="image/*"
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 <!-- 登录 -->
 {% else %}
